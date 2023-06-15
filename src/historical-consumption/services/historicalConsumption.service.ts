@@ -16,11 +16,12 @@ export class HistoricalConsumptionService {
       const request = new sql.Request(this.sqlServerConnection);
 
       const res = await request.query(`
-        SELECT DISTINCT hc.idTipCliente, hc.idlinea tramo, hc.Consumo, hc.Costo, hc.Perdida
-        FROM HistoricoConsumos hc
-        INNER JOIN consumo_por_tramo c ON hc.fecha = c.fecha
-        INNER JOIN costo_por_tramo cp ON hc.fecha = cp.fecha
-        INNER JOIN perdida_por_tramo p ON hc.fecha = p.fecha
+        SELECT 
+          l.nombre Linea, hc.fecha Fecha, tc.nombre Cliente, hc.Consumo, hc.Perdida, hc.Costo [Costo x Consumo]	
+        FROM 
+          HistoricoConsumos hc
+          INNER JOIN Tipo_clientes tc ON tc.id = hc.idTipCliente
+          INNER JOIN Lineas l ON l.id = hc.idLinea
         WHERE hc.fecha >= '${initialDate}' AND hc.fecha <= '${finalDate}';
       `);
 
