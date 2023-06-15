@@ -1,5 +1,5 @@
 import { Test, TestingModule } from '@nestjs/testing';
-import { HistoricalConsumptionService } from './historical-consumption.service';
+import { HistoricalConsumptionService } from './historicalConsumption.service';
 
 describe('HistoricalConsumptionService', () => {
   let service: HistoricalConsumptionService;
@@ -9,7 +9,9 @@ describe('HistoricalConsumptionService', () => {
       providers: [HistoricalConsumptionService],
     }).compile();
 
-    service = module.get<HistoricalConsumptionService>(HistoricalConsumptionService);
+    service = module.get<HistoricalConsumptionService>(
+      HistoricalConsumptionService,
+    );
   });
 
   it('should be defined', () => {
