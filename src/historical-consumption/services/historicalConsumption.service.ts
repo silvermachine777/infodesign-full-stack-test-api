@@ -11,9 +11,9 @@ export class HistoricalConsumptionService {
   async byTranches(data: HistorialConsumptionDto) {
     const initialDate = data.initialDate;
     const finalDate = data.finalDate;
-    const historiType = data.historyType;
+    const historyType = data.historyType;
 
-    if (historiType === 'historyByTranches') {
+    if (historyType === 'historyByTranches') {
       try {
         const request = new sql.Request(this.sqlServerConnection);
 
@@ -41,9 +41,9 @@ export class HistoricalConsumptionService {
   async byClient(data: HistorialConsumptionDto) {
     const initialDate = data.initialDate;
     const finalDate = data.finalDate;
-    const historiType = data.historyType;
+    const historyType = data.historyType;
 
-    if (historiType === 'historyByClient') {
+    if (historyType === 'historyByClient') {
       try {
         const request = new sql.Request(this.sqlServerConnection);
 
@@ -59,6 +59,35 @@ export class HistoricalConsumptionService {
             INNER JOIN Tipo_clientes tc ON tc.id = hc.idTipCliente
             INNER JOIN Lineas l ON l.id = hc.idLinea
           WHERE hc.fecha >= '${initialDate}' AND hc.fecha <= '${finalDate}'
+        `);
+
+        return res.recordset.length > 0 ? res.recordset : [];
+      } catch (err) {
+        throw new Error(err);
+      }
+    }
+  }
+
+  async top20WorstSegmentsByClient(data: HistorialConsumptionDto) {
+    const initialDate = data.initialDate;
+    const finalDate = data.finalDate;
+    const historyType = data.historyType;
+
+    if (historyType === 'top20') {
+      try {
+        const request = new sql.Request(this.sqlServerConnection);
+
+        const res = await request.query(`
+          SELECT top 20
+            tc.nombre Cliente,
+            l.nombre Linea,
+            hc.Perdida
+            
+          FROM 
+            HistoricoConsumos hc
+            INNER JOIN Tipo_clientes tc ON tc.id = hc.idTipCliente
+            INNER JOIN Lineas l ON l.id = hc.idLinea
+            WHERE hc.fecha >= '${initialDate}' AND hc.fecha <= '${finalDate}' order by hc.Perdida desc          
         `);
 
         return res.recordset.length > 0 ? res.recordset : [];
