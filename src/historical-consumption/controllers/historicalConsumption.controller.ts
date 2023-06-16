@@ -22,4 +22,16 @@ export class HistoricalConsumptionController {
       throw new Error(error);
     }
   }
+  @Post('byClient')
+  @HttpCode(200)
+  async getHistoricalConsumptionByClient(
+    @Body() payload: HistorialConsumptionDto,
+  ) {
+    try {
+      const result = await this.historicalConsumptionService.byClient(payload);
+      return { success: true, data: result, status: 200 };
+    } catch (error) {
+      throw new Error(error);
+    }
+  }
 }
