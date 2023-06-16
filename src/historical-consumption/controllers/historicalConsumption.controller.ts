@@ -34,4 +34,17 @@ export class HistoricalConsumptionController {
       throw new Error(error);
     }
   }
+  @Post('top20WorstSegmentsByClient')
+  @HttpCode(200)
+  async top20WorstSegmentsByClient(@Body() payload: HistorialConsumptionDto) {
+    try {
+      const result =
+        await this.historicalConsumptionService.top20WorstSegmentsByClient(
+          payload,
+        );
+      return { success: true, data: result, status: 200 };
+    } catch (error) {
+      throw new Error(error);
+    }
+  }
 }
