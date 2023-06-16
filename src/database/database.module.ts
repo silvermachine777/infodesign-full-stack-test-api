@@ -16,14 +16,14 @@ import config from '../config';
           password: password,
           database: database,
           options: {
-            trustServerCertificate: true, // Agrega esta línea para desactivar la validación del certificado
+            trustServerCertificate: true,
           },
         };
         const pool = await sql.connect(dbConfig);
 
         return pool;
       },
-      inject: [config.KEY], // Asegúrate de inyectar la clave correcta para la configuración
+      inject: [config.KEY],
     },
   ],
   exports: ['SQL_SERVER_CONNECTION'],
