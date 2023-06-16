@@ -17,7 +17,11 @@ export class HistoricalConsumptionService {
 
       const res = await request.query(`
         SELECT 
-          l.nombre Linea, hc.fecha Fecha, tc.nombre Cliente, hc.Consumo, hc.Perdida, hc.Costo [Costo x Consumo]	
+          l.nombre Linea,
+          hc.fecha Fecha,
+          hc.Consumo,
+          hc.Perdida,
+          hc.Costo [Costo x Consumo]	
         FROM 
           HistoricoConsumos hc
           INNER JOIN Tipo_clientes tc ON tc.id = hc.idTipCliente
