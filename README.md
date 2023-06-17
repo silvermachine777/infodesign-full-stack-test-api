@@ -60,7 +60,7 @@ API, including the project structure, available routes and resources used resour
 
 ## Installation
 - Download of the repository
-
+- Execute
 ```bash
 $ npm install
 ```
@@ -78,7 +78,4 @@ $ npm run start:dev
 $ npm run start:prod
 ```
 
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
 
