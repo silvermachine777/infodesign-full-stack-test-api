@@ -58,6 +58,9 @@ API, including the project structure, available routes and resources used resour
   "historyType": "top20"
 }
 
+## Database configuration
+- Go to .env file and add your respective configuration
+
 ## Installation
 - Download of the repository
 - Execute
