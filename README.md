@@ -39,19 +39,19 @@ API, including the project structure, available routes and resources used resour
 
 ## Body Structure 
 
-# byTranches
+### byTranches
 {
   "initialDate": "2010-01-01",
   "finalDate": "2010-01-02",
   "historyType": "historyByTranches"
 }
-# byClient
+### byClient
 {
   "initialDate": "2010-01-01",
   "finalDate": "2010-01-02",
   "historyType": "historyByClient"
 }
-# top20
+### top20
 {
   "initialDate": "2010-01-01",
   "finalDate": "2010-01-02",
